@@ -1,0 +1,2 @@
+server.servlet.context-path: /spring-boot-kotlin-gradle-docker-sample
+server.port: 1990
