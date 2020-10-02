@@ -17,5 +17,5 @@ Title of the repo is self-explanatory and it lives up to it
 
 - For impatient, here is the direct command to spin the container
 `docker run -d --name "boot-with-kotlin" -p 1990:1990 sairaghavak/spring-boot-kotlin-gradle-docker-sample:0.0.1`
-    = ![Pull the public image and run](imgs/5.PNG)
+    - ![Pull the public image and run](imgs/5.PNG)
     
