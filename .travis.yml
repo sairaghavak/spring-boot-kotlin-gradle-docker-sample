@@ -13,8 +13,10 @@ services:
   - docker
 
 before_install:
+  - echo $TRAVIS_BUILD_DIR
   - cd $TRAVIS_BUILD_DIR
-  - .\gradlew clean build
+  - pwd
+  - gradlew clean build
   - cp /build/libs/. /docker/
   - cd docker/
   - docker build -t $app_name:$TRAVIS_COMMIT --build-arg ARTIFACT=$(ls -a | grep ".jar")
