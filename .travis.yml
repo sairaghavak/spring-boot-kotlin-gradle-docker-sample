@@ -1,0 +1,26 @@
+sudo: required
+
+language: java
+jdk:
+  - openjdk11
+
+env:
+  global:
+    - app_name=spring-boot-kotlin-gradle-docker-sample
+    - docker_namespace=sairaghavak
+
+services:
+  - docker
+
+before_script:
+  - cd $app_name
+
+script:
+  - .\gradlew clean build
+  - cp /build/libs/. /docker/
+
+before_install:
+  - cd $app_name/docker
+  - docker build -t $app_name:$TRAVIS_COMMIT --build-arg ARTIFACT=$(ls -a | grep ".jar")
+  - docker tag $app_name:$TRAVIS_COMMIT $docker_namespace/$app_name:$TRAVIS_COMMIT
+  - docker tag $app_name:$TRAVIS_COMMIT $docker_namespace/$app_name:latest
