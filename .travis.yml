@@ -13,7 +13,7 @@ services:
   - docker
 
 before_install:
-  - cd $TRAVIS_BUILD_DIR/$app_name
+  - cd $TRAVIS_BUILD_DIR
   - .\gradlew clean build
   - cp /build/libs/. /docker/
   - cd docker/
