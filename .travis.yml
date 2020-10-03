@@ -12,13 +12,6 @@ env:
 services:
   - docker
 
-before_install:
-  - echo $TRAVIS_BUILD_DIR
-  - cd $TRAVIS_BUILD_DIR
-  - pwd
-  - gradlew clean build
+script:
+  - ./gradlew clean build
   - cp /build/libs/. /docker/
-  - cd docker/
-  - docker build -t $app_name:$TRAVIS_COMMIT --build-arg ARTIFACT=$(ls -a | grep ".jar")
-  - docker tag $app_name:$TRAVIS_COMMIT $docker_namespace/$app_name:$TRAVIS_COMMIT
-  - docker tag $app_name:$TRAVIS_COMMIT $docker_namespace/$app_name:latest
