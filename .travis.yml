@@ -18,3 +18,7 @@ before_install:
 script:
   - ./gradlew clean build
   - cp ./build/libs/*.jar ./docker
+  - cd ./docker
+  - docker build -t $app_name:$TRAVIS_COMMIT --build-arg ARTIFACT=$(ls -a | grep ".jar")
+  - docker tag $app_name:$TRAVIS_COMMIT $docker_namespace/$app_name:$TRAVIS_COMMIT
+  - docker tag $app_name:$TRAVIS_COMMIT $docker_namespace/$app_name:latest
